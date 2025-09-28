@@ -21,7 +21,7 @@ public class Persona {
 	}
 
 	public void addHijo(Persona p) {
-		// TODO 
+		this.hijos.add(p);// TODO 
 	}
 
 	public String descendientes() {
