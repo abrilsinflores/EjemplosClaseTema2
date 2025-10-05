@@ -42,7 +42,7 @@ public class Persona {
 			misDescendientes = misDescendientes + descendientes + ",";
 			
 		}
-		return descendientes;
+		return misDescendientes;
 	}
 
 	public static void main(String[] args) {
@@ -61,9 +61,6 @@ public class Persona {
 		Persona ra = new Persona("Ramona");
 		no.addHijo(ra);
 		System.out.println(ro.descendientes());
-		
-		
-		
 		
 	}
 
