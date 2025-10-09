@@ -31,39 +31,28 @@ public class MazeSolver {
 	
 	//method recursivo
 	private boolean walk(Coordinate current) {
-		
-		//CÓDIGO GENERAL 
-		path.add(current);
-		
+			
 		//CASOS BASES
-		
 		//estoy fuera del maze? 
 		if(current.getX() >= maze[0].length()		//la "x" se sale x la der
 				|| current.getX() < 0 				//la "x" se sale x la izq
 				|| current.getY() >= maze.length	// la "y" se sale x abajo
 				|| current.getY() < 0) {			// la "y" se sale x arriba
-			path.remove(current);
 			return false;
 		}
-		
 		//estoy en un muro?
 		if(maze[current.getY()].charAt(current.getX()) == wall) {
 			return false;
 		}
-		
 		//estoy en la salida?
 		if(current.equals(end)) {
+			path.add(current);
 			return true;
 		}
-		
 		//he estado antes?
 		if(visited.contains(current)) {
-			path.remove(current);
 			return false;
-			
 		}
-		
-		
 		
 		//PASO RECURSIVO: up, right, down, left
 		this.visited.add(current);
@@ -76,9 +65,9 @@ public class MazeSolver {
 		toVisit[1] = right;
 		toVisit[2] = down;
 		toVisit[3] = left;
-		for(Coordinate next : toVisit) {
-			this.visited.add(current); //para q cuando me mueva añada la coord a las visitads
+		for(Coordinate next : toVisit) { //se exploran todos los caminos posibles
 			if(this.walk(next)) { //si devuelve true el caso base es q es por ahí
+				path.add(current);
 				return true;
 			}
 		}
@@ -93,7 +82,7 @@ public class MazeSolver {
 	
 	public static void main(String[] args) throws IOException{ //probamos si funciona
 		//hace falta implementar un método q no ha explicado en clase:
-		Path filePath = Paths.get(args[0]);
+		Path filePath = Paths.get(args[0]); 
 		List<String> mazeList = Files.readAllLines(filePath);
 		String maze[] = mazeList.toArray(new String[0]);
 		// Encontramos camino de inicio y fin
