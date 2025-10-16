@@ -6,30 +6,36 @@ public class BubbleSort {
 	
 	//definición del método bubble sort con complejidad algorítmica O(n^2)
 	//me dan un array de ints desordenados y devuelvo uno ordenado
-	
-	public static int[] bubbleSort(int[] arrayDesordenado) {
-		int[] arrayOrdenado = arrayDesordenado;
-		//para hacer el código más legible:
-		int n = arrayOrdenado.length; 
-		for(int j = 0; j<n; j++) { //recorremos el array tantas veces como su longitud
-			for(int i = 0; (i+1)<n; i++) {
-				int valor = arrayOrdenado[i];
-				if(valor>arrayOrdenado[i+1]) {
-					arrayOrdenado[i] = arrayOrdenado[i+1];
-					arrayOrdenado[i+1] = valor;
+
+
+	private static void bubbleSort(int[] list) {
+		for (int i = 0 ; i < list.length; i++) {
+			for (int j = 0; j < list.length - 1 - i; j++) {
+				// Si es mayor el segundo, los cambiamos
+				if (list[j] > list[j+1]) {
+					// Permutacion de dos números
+					int temp = list[j];
+					list[j] = list[j+1];
+					list[j+1] = temp;
 				}
 			}
-			
 		}
-		
-		return arrayOrdenado;
 	}
-			
-
+	
 	public static void main(String[] args) {
-		
-		int[] miArray = {4,3,45,9,777,5,2,3};
-		System.out.println(Arrays.toString(BubbleSort.bubbleSort(miArray)));
+		int[] list = { 31, 29, 27, 25, 23, 21, 19, 17, 15, 13, 11, 9, 7, 5, 3, 1 };
+		int[] listBazillion = new int[1000000];
+		for (int i = 0; i < listBazillion.length; i ++) {
+			listBazillion[i] = 1000000 - i;
+		}
+		long t1 = System.nanoTime();
+		bubbleSort(listBazillion);
+		long t2 = System.nanoTime();
+		System.out.println("Esto tarda: " + (t2-t1));
+//		System.out.println("Ordenado:");
+//		for (int v : list) {
+//			System.out.println(v);
+//		}
 	}
 
 }
